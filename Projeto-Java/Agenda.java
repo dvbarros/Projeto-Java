@@ -2,13 +2,14 @@ import java.util.Scanner;
 
 public class Agenda{
     public String nomeTarefa;
-    public int dia, mes;
+    public int dia, mes, ano;
     public int hora,minuto;
 
-    public Agenda (String nomeTarefa, int dia, int mes, int hora, int minuto){
+    public Agenda (String nomeTarefa, int dia, int mes,int ano, int hora, int minuto){
         this.nomeTarefa = nomeTarefa;
         this.dia = dia;
         this.mes = mes;
+        this.ano = ano;
         this.hora = hora;
         this.minuto = minuto;
     }  
@@ -22,6 +23,8 @@ public class Agenda{
             dia = sc.nextInt();
             System.out.println("MÊS: ");
             mes = sc.nextInt();
+            System.out.println("ANO: ");
+            ano = sc.nextInt();
             System.out.println("\nQual o horário da Tarefa ?");
             System.out.println("Hora: ");
             hora = sc.nextInt();
@@ -32,7 +35,7 @@ public class Agenda{
     }
     public void imprimirTarefa (){
         System.out.println("Tarefa: " + nomeTarefa);
-        System.out.println("Data: " + dia + " / " + mes);
+        System.out.println("Data: " + dia + " / " + mes + " / " + ano);
         System.out.println("Horário da Tarefa: " + hora + ":" + minuto);
     }
 }
