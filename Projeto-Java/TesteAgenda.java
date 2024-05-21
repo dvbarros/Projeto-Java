@@ -1,41 +1,25 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class TesteAgenda{
-    public static void main (String [] args){
-        Scanner sc = new Scanner(System.in);
-        String nomeTarefa;
-        int dia, mes, ano, hora, minuto, resposta = 0;
-        boolean continuar = true;
+public class TesteTarefa {
+    public static void main(String[] args) {
+        ArrayList<Tarefa> Agenda = new ArrayList<>();
+        try (Scanner sc = new Scanner(System.in)) {
+            int resposta = 1;
+                while(resposta == 1){
+                    Tarefa novaTarefa = new Tarefa();
 
-        while(continuar){
-            System.out.println("Qual a Tarefa desejada ?");
-            nomeTarefa = sc.nextLine();
-            System.out.println("\nQual a data da Tarefa ?");
-            System.out.println("DIA: ");
-            dia = sc.nextInt();
-            System.out.println("MÊS: ");
-            mes = sc.nextInt();
-            System.out.println("ANO: ");
-            ano = sc.nextInt();
-            System.out.println("\nQual o horário da Tarefa ?");
-            System.out.println("Hora: ");
-            hora = sc.nextInt();
-            System.out.println("Minuto: ");
-            minuto = sc.nextInt();
-
-            Agenda agenda =  new Agenda (nomeTarefa, dia, mes, ano, hora, minuto);
-            
-            //loop para continuar ou não a adicionar tarefas
-            while(resposta != 1 && resposta!= 2){
-                System.out.println("Deseja Cadastrar outra tarefa? (1)SIM (2)NÃO");
-                resposta = sc.nextInt();
-                if(resposta ==2){
-                continuar = false;
+                    novaTarefa.perguntas();
+                    Agenda.add(novaTarefa);
+                    
+                    System.out.println("Tarefas Cadastradas: ");
+                    
+                    for(Tarefa tarefa : Agenda){
+                        tarefa.imprimirTarefa();
+                    }
                 }
+                System.out.println("Saída: ");
+                resposta = sc.nextInt();
             }
-            resposta = 0;
         }
-
     }
-}
