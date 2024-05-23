@@ -114,7 +114,7 @@ public class AgendaApp extends JFrame {
             arquivo.println("Horário da Tarefa: " + hora + ":" + minuto + "\n\n");
 
             arquivo.close();
-            
+
             atualizarListaTarefas();
             limparCampos();
         } catch (NumberFormatException e) {
@@ -135,15 +135,5 @@ public class AgendaApp extends JFrame {
         mesField.setText("");
         horaField.setText("");
         minutoField.setText("");
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                AgendaApp gui = new AgendaApp();
-                gui.setVisible(true);
-            }
-        });
     }
 }
