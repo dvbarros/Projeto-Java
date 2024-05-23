@@ -13,31 +13,47 @@ public class AgendaApp extends JFrame {
         agenda = new ArrayList<>();
 
         setTitle("Agenda de Tarefas");
-        setSize(400, 400);
+        setSize(400, 500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        JPanel inputPanel = new JPanel(new GridLayout(6, 2));
-        inputPanel.add(new JLabel("Nome da Tarefa:"));
-        nomeField = new JTextField();
-        inputPanel.add(nomeField);
+        JPanel inputPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.insets = new Insets(2,2,5,2);
 
-        inputPanel.add(new JLabel("Dia da Tarefa:"));
-        diaField = new JTextField();
-        inputPanel.add(diaField);
+        inputPanel.add(new JLabel("Nome da Tarefa:"), gbc);
+        gbc.gridy++;
+        nomeField = new JTextField(20);
+        inputPanel.add(nomeField, gbc);
 
-        inputPanel.add(new JLabel("Mês da Tarefa:"));
-        mesField = new JTextField();
-        inputPanel.add(mesField);
+        gbc.gridy++;
+        inputPanel.add(new JLabel("Dia da Tarefa:"), gbc);
+        gbc.gridy++;
+        diaField = new JTextField(20);
+        inputPanel.add(diaField, gbc);
 
-        inputPanel.add(new JLabel("Hora da Tarefa:"));
-        horaField = new JTextField();
-        inputPanel.add(horaField);
+        gbc.gridy++;
+        inputPanel.add(new JLabel("Mês da Tarefa:"), gbc);
+        gbc.gridy++;
+        mesField = new JTextField(20);
+        inputPanel.add(mesField, gbc);
 
-        inputPanel.add(new JLabel("Minuto da Tarefa:"));
-        minutoField = new JTextField();
-        inputPanel.add(minutoField);
+        gbc.gridy++;
+        inputPanel.add(new JLabel("Hora da Tarefa:"), gbc);
+        gbc.gridy++;
+        horaField = new JTextField(20);
+        inputPanel.add(horaField, gbc);
 
+        gbc.gridy++;
+        inputPanel.add(new JLabel("Minuto da Tarefa:"), gbc);
+        gbc.gridy++;
+        minutoField = new JTextField(20);
+        inputPanel.add(minutoField, gbc);
+
+        gbc.gridy++;
         JButton cadastrarButton = new JButton("Cadastrar Tarefa");
         cadastrarButton.addActionListener(new ActionListener() {
             @Override
@@ -45,7 +61,27 @@ public class AgendaApp extends JFrame {
                 cadastrarTarefa();
             }
         });
-        inputPanel.add(cadastrarButton);
+        inputPanel.add(cadastrarButton, gbc);
+
+        gbc.gridy++;
+        JButton atualizarButton = new JButton("Atualizar Tarefas");
+        atualizarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                atualizarListaTarefas();
+            }
+        });
+        inputPanel.add(atualizarButton, gbc);
+
+        gbc.gridy++;
+        JButton limparCamposButton = new JButton("Limpar Campos ");
+        limparCamposButton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                limparCampos();
+            }
+        });
+        inputPanel.add(limparCamposButton, gbc);
 
         add(inputPanel, BorderLayout.NORTH);
 
