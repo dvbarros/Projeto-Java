@@ -3,13 +3,21 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.io.*;
 
 public class AgendaApp extends JFrame {
     private ArrayList<Tarefa> agenda;
     private JTextField nomeField, diaField, mesField, horaField, minutoField;
     private JTextArea tarefasTextArea;
+    private PrintStream arquivo;
 
     public AgendaApp() {
+        try {
+            arquivo = new PrintStream(new FileOutputStream("Agenda.csv", true));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         agenda = new ArrayList<>();
 
         setTitle("Agenda de Tarefas");
@@ -101,6 +109,12 @@ public class AgendaApp extends JFrame {
 
             Tarefa novaTarefa = new Tarefa(nome, dia, mes, hora, minuto);
             agenda.add(novaTarefa);
+            arquivo.println("Tarefa: " + nome);
+            arquivo.println("Data: " + dia + " / " + mes);
+            arquivo.println("Horário da Tarefa: " + hora + ":" + minuto + "\n\n");
+
+            arquivo.close();
+            
             atualizarListaTarefas();
             limparCampos();
         } catch (NumberFormatException e) {
@@ -133,4 +147,3 @@ public class AgendaApp extends JFrame {
         });
     }
 }
-
