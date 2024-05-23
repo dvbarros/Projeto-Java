@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class TesteTarefa {
+public class TesteAgenda {
     public static void main(String[] args) {
         ArrayList<Tarefa> Agenda = new ArrayList<>();
         try (Scanner sc = new Scanner(System.in)) {
