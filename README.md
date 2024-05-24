@@ -1,5 +1,5 @@
 # Projeto-Java
-Realização de um "Agenda de Tarefas" por meio do console utilizando a linguagem Java.
+Realização de um "Agenda de Tarefas" por meio de uma interface utilizando a biblioteca swing do Java.
 # Requisitos 
 - Cadastrar Tarefa (Nome, Data e Hora).
 - Cadastrar infinitas Tarefas.
