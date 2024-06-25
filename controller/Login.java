@@ -1,6 +1,10 @@
 package controller;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import model.ValidaLoginDAO;
+import model.MostraTarefasDAO;
 
 public class Login extends JFrame {
     private JTextField emailField, senhaField;
@@ -36,18 +40,50 @@ public class Login extends JFrame {
 
         JButton logarButton = new JButton("Entrar");
         logarButton.setPreferredSize(new Dimension(150, 30));
+        logarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                validaLoginUsuario();
+            }
+        });
         inputPanel.add(logarButton, gbc);
 
         gbc.gridy++;
 
         JButton cadastrarUsuarioButton = new JButton("Cadastrar");
         cadastrarUsuarioButton.setPreferredSize(new Dimension(150, 30));
+        cadastrarUsuarioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                levaCadastro();
+            }
+        });
         inputPanel.add(cadastrarUsuarioButton, gbc);
-
-       
-
         
-
         getContentPane().add(inputPanel, BorderLayout.CENTER);
+
+    }
+    private void validaLoginUsuario(){
+        String email = emailField.getText();
+        String senha = senhaField.getText();
+
+        ValidaLoginDAO dao = new ValidaLoginDAO();
+        boolean sucesso = dao.validaLogin(email, senha);
+
+        if (sucesso) {
+            JOptionPane.showMessageDialog(this, "Login realizado com sucesso!");
+            // Redirecionar para a página de cadastro de tarefas (ainda não implementado)
+            abrirPaginaCadastroTarefas();
+        } else {
+            JOptionPane.showMessageDialog(this, "Email ou senha incorretos.");
+        }
+    }
+    private void abrirPaginaCadastroTarefas() {
+            CadastroTarefa gui = new CadastroTarefa();
+            gui.setVisible(true);
+    }
+    private void levaCadastro(){
+        CadastroUsuario gui = new CadastroUsuario();
+        gui.setVisible(true);
     }
 }

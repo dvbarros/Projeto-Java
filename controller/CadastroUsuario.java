@@ -69,9 +69,16 @@ public class CadastroUsuario extends JFrame {
             nomeField.setText("");
             emailField.setText("");
             senhaField.setText("");
+
+            abrirPaginaCadastroTarefas();
+            
         } else {
-            JOptionPane.showMessageDialog(this, "Erro ao cadastrar tarefa.");
+            JOptionPane.showMessageDialog(this, "Erro ao cadastrar usuário.");
         }
     }
+    private void abrirPaginaCadastroTarefas() {
+        CadastroTarefa gui = new CadastroTarefa();
+        gui.setVisible(true);
+}
 
 }

@@ -3,6 +3,7 @@ package controller;
 import javax.swing.*;
 
 import model.CadastraTarefaDAO;
+import model.MostraTarefasDAO;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -71,8 +72,14 @@ public class CadastroTarefa extends JFrame {
             nomeField.setText("");
             diaField.setText("");
             horaField.setText("");
+            mostrarTarefas();
+
         } else {
             JOptionPane.showMessageDialog(this, "Erro ao cadastrar tarefa.");
         }
+    }
+    private void mostrarTarefas() {
+            MostraTarefasDAO gui = new MostraTarefasDAO();
+            gui.mostraTarefas();
     }
 }
