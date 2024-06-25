@@ -1,7 +1,11 @@
 package controller;
 import javax.swing.*;
 
+import model.CadastraUsuarioDAO;
+
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class CadastroUsuario extends JFrame {
     private JTextField nomeField, emailField, senhaField;
@@ -40,9 +44,34 @@ public class CadastroUsuario extends JFrame {
         gbc.gridy++;
 
         JButton cadastrarUsuarioButton = new JButton("Cadastrar");
+        cadastrarUsuarioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cadastrarUsuario();
+            }
+        });
         inputPanel.add(cadastrarUsuarioButton, gbc);
 
         getContentPane().add(inputPanel, BorderLayout.CENTER);
+    }
+
+    private void cadastrarUsuario(){
+        String nome = nomeField.getText();
+        String email = emailField.getText();
+        String senha = senhaField.getText();
+
+        CadastraUsuarioDAO dao = new CadastraUsuarioDAO();
+        boolean sucesso = dao.inserirUsuario(nome, email, senha);
+
+        if (sucesso) {
+            JOptionPane.showMessageDialog(this, "Usuário cadastrado com sucesso!");
+            // Limpar os campos após o cadastro
+            nomeField.setText("");
+            emailField.setText("");
+            senhaField.setText("");
+        } else {
+            JOptionPane.showMessageDialog(this, "Erro ao cadastrar tarefa.");
+        }
     }
 
 }
